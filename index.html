@@ -1,76 +1,107 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>For You 🌼</title>
-    <meta charset="UTF-8">
-    <style>
-        body {
-            background: linear-gradient(to bottom, #fff4c2, #fffdf5);
-            text-align: center;
-            font-family: Georgia, serif;
-            margin: 0;
-            padding: 0;
-        }
+<meta charset="UTF-8">
+<title>For My bb 🌼</title>
 
-        h1 {
-            margin-top: 40px;
-            color: #e6b800;
-        }
+<style>
+body {
+    margin: 0;
+    background: radial-gradient(circle at center, #fff4c2, #fffdf5);
+    font-family: Georgia, serif;
+    text-align: center;
+}
 
-        p {
-            color: #c9a000;
-            font-size: 18px;
-        }
+h1 {
+    margin-top: 30px;
+    color: #c9a000;
+}
 
-        .flower {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            margin-top: 50px;
-            flex-wrap: wrap;
-        }
+#container {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    margin: 40px auto;
+}
 
-        .petal {
-            font-size: 65px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            filter: drop-shadow(0 0 8px #ffe066);
-        }
+svg {
+    width: 100%;
+    height: 100%;
+}
 
-        .petal:hover {
-            transform: scale(1.2);
-        }
+.petal {
+    fill: #ffe066;
+    cursor: pointer;
+    transform-origin: 200px 200px;
+    transition: transform 0.6s ease, opacity 0.6s ease;
+}
 
-        #memory {
-            margin-top: 40px;
-        }
+.petal:hover {
+    fill: #ffd633;
+}
 
-        #memory img {
-            width: 300px;
-            border-radius: 15px;
-            margin-top: 20px;
-            box-shadow: 0 0 15px rgba(255, 223, 0, 0.4);
-        }
-    </style>
+.open {
+    transform: scale(0.3);
+    opacity: 0.4;
+}
+
+#centerText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+}
+
+#centerText img {
+    width: 220px;
+    border-radius: 15px;
+    margin-top: 10px;
+    box-shadow: 0 0 20px rgba(255,200,0,0.4);
+}
+</style>
 </head>
+
 <body>
 
-<h1>Every Petal Is A Memory 🌼</h1>
-<p>Click a yellow rose 💛</p>
+<h1>Click The Petals 🌼</h1>
 
-<div class="flower">
-    <div class="petal" onclick="reveal(1)">🌼</div>
-    <div class="petal" onclick="reveal(2)">🌼</div>
-    <div class="petal" onclick="reveal(3)">🌼</div>
-    <div class="petal" onclick="reveal(4)">🌼</div>
-    <div class="petal" onclick="reveal(5)">🌼</div>
+<div id="container">
+
+<svg viewBox="0 0 400 400">
+
+    <!-- 5 petals rotated around center -->
+    <ellipse class="petal" cx="200" cy="120" rx="50" ry="90"
+        onclick="reveal(1, this)"/>
+
+    <ellipse class="petal" cx="200" cy="120" rx="50" ry="90"
+        transform="rotate(72 200 200)"
+        onclick="reveal(2, this)"/>
+
+    <ellipse class="petal" cx="200" cy="120" rx="50" ry="90"
+        transform="rotate(144 200 200)"
+        onclick="reveal(3, this)"/>
+
+    <ellipse class="petal" cx="200" cy="120" rx="50" ry="90"
+        transform="rotate(216 200 200)"
+        onclick="reveal(4, this)"/>
+
+    <ellipse class="petal" cx="200" cy="120" rx="50" ry="90"
+        transform="rotate(288 200 200)"
+        onclick="reveal(5, this)"/>
+
+    <!-- center circle -->
+    <circle cx="200" cy="200" r="55" fill="#ffcc00"/>
+</svg>
+
+<div id="centerText"></div>
+
 </div>
 
-<div id="memory"></div>
-
 <script>
-function reveal(number) {
-    const memory = document.getElementById("memory");
+function reveal(num, petal) {
+
+    petal.classList.add("open");
 
     const messages = [
         "",
@@ -81,9 +112,9 @@ function reveal(number) {
         "My bb is the best person ever 🌹"
     ];
 
-    memory.innerHTML = `
-        <h2 style="color:#c9a000;">${messages[number]}</h2>
-        <img src="photo${number}.jpg">
+    document.getElementById("centerText").innerHTML = `
+        <h3 style="color:#c9a000;">${messages[num]}</h3>
+        <img src="photo${num}.jpg">
     `;
 }
 </script>

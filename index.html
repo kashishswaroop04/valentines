@@ -20,10 +20,10 @@ h1 {
 
 #container {
     position: relative;
-    width: 420px;
-    height: 420px;
-    margin: 30px auto;
-    z-index: 2;
+    width: 500px;
+    height: 500px;
+    margin: 20px auto;
+    z-index: 5; /* flower stays above */
 }
 
 svg {
@@ -31,7 +31,7 @@ svg {
     height: 100%;
 }
 
-/* Petal styling */
+/* BIGGER PETALS */
 .petal {
     fill: #ffe066;
     cursor: pointer;
@@ -41,29 +41,30 @@ svg {
 }
 
 @keyframes glow {
-    from { filter: drop-shadow(0 0 5px #ffe066); }
-    to { filter: drop-shadow(0 0 25px #ffcc00); }
+    from { filter: drop-shadow(0 0 8px #ffe066); }
+    to { filter: drop-shadow(0 0 30px #ffcc00); }
 }
 
 .open {
-    transform: scale(0.3);
+    transform: scale(0.25);
     opacity: 0.4;
 }
 
-/* Center content */
 #centerText {
     position: absolute;
-    top: 50%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 260px;
+    z-index: 1;
 }
 
 #centerText img {
-    width: 230px;
+    width: 200px; /* slightly smaller so petals stay clickable */
     border-radius: 15px;
     margin-top: 10px;
     box-shadow: 0 0 25px rgba(255,200,0,0.4);
+    pointer-events: none; /* image won't block clicks */
 }
 
 /* Falling pink petals */
@@ -73,7 +74,7 @@ svg {
     font-size: 22px;
     animation: fall linear infinite;
     color: #ff69b4;
-    z-index: 1;
+    z-index: 0;
 }
 
 @keyframes fall {
@@ -92,34 +93,33 @@ svg {
 
 <svg viewBox="0 0 400 400">
 
-    <!-- We rotate GROUPS instead of individual shapes -->
-
+    <!-- Bigger petals -->
     <g transform="rotate(0 200 200)">
-        <ellipse class="petal" cx="200" cy="110" rx="55" ry="95"
+        <ellipse class="petal" cx="200" cy="90" rx="70" ry="115"
             onclick="reveal(this, 1)"/>
     </g>
 
     <g transform="rotate(72 200 200)">
-        <ellipse class="petal" cx="200" cy="110" rx="55" ry="95"
+        <ellipse class="petal" cx="200" cy="90" rx="70" ry="115"
             onclick="reveal(this, 2)"/>
     </g>
 
     <g transform="rotate(144 200 200)">
-        <ellipse class="petal" cx="200" cy="110" rx="55" ry="95"
+        <ellipse class="petal" cx="200" cy="90" rx="70" ry="115"
             onclick="reveal(this, 3)"/>
     </g>
 
     <g transform="rotate(216 200 200)">
-        <ellipse class="petal" cx="200" cy="110" rx="55" ry="95"
+        <ellipse class="petal" cx="200" cy="90" rx="70" ry="115"
             onclick="reveal(this, 4)"/>
     </g>
 
     <g transform="rotate(288 200 200)">
-        <ellipse class="petal" cx="200" cy="110" rx="55" ry="95"
+        <ellipse class="petal" cx="200" cy="90" rx="70" ry="115"
             onclick="reveal(this, 5)"/>
     </g>
 
-    <circle cx="200" cy="200" r="60" fill="#ffcc00"/>
+    <circle cx="200" cy="200" r="65" fill="#ffcc00"/>
 
 </svg>
 
@@ -156,7 +156,7 @@ function reveal(petal, num) {
         if (clicked === 5) {
             setTimeout(() => {
                 document.getElementById("centerText").innerHTML = `
-                    <h2 style="color:#d63384; font-size:30px;">
+                    <h2 style="color:#d63384; font-size:32px;">
                         I love my bb 💕🌸
                     </h2>
                 `;

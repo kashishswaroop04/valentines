@@ -2,27 +2,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>For My bb 🌼</title>
+<title>For My bb 🌸🌼</title>
 
 <style>
 body {
     margin: 0;
     overflow: hidden;
-    background: radial-gradient(circle at center, #fff4c2, #fffdf5);
+    background: linear-gradient(to bottom, #ffd6e8, #fff4c2);
     font-family: Georgia, serif;
     text-align: center;
 }
 
 h1 {
     margin-top: 25px;
-    color: #c9a000;
+    color: #d63384;
 }
 
 #container {
     position: relative;
     width: 420px;
     height: 420px;
-    margin: 20px auto;
+    margin: 30px auto;
     z-index: 2;
 }
 
@@ -34,18 +34,14 @@ svg {
 .petal {
     fill: #ffe066;
     cursor: pointer;
-    transform-origin: center;
+    transform-origin: 200px 200px;
     transition: transform 0.8s ease, opacity 0.8s ease;
     animation: glow 2s infinite alternate;
 }
 
-.petal:hover {
-    fill: #ffd633;
-}
-
 @keyframes glow {
     from { filter: drop-shadow(0 0 5px #ffe066); }
-    to { filter: drop-shadow(0 0 20px #ffcc00); }
+    to { filter: drop-shadow(0 0 25px #ffcc00); }
 }
 
 .open1 { transform: rotate(0deg) translateY(-120px); opacity: 0.5; }
@@ -66,16 +62,17 @@ svg {
     width: 230px;
     border-radius: 15px;
     margin-top: 10px;
-    box-shadow: 0 0 20px rgba(255,200,0,0.4);
+    box-shadow: 0 0 25px rgba(255,200,0,0.4);
 }
 
-/* Falling petals */
+/* Falling pink petals */
 .falling {
     position: absolute;
     top: -20px;
-    font-size: 20px;
+    font-size: 22px;
     animation: fall linear infinite;
-    color: #ffd633;
+    color: #ff69b4;
+    z-index: 1;
 }
 
 @keyframes fall {
@@ -88,28 +85,33 @@ svg {
 
 <body>
 
-<h1>Click The Petals 🌼</h1>
+<h1>Click The Petals 🌸</h1>
 
 <div id="container">
 
 <svg viewBox="0 0 400 400">
 
-    <ellipse class="petal" id="p1" cx="200" cy="110" rx="50" ry="90"
+    <!-- Proper symmetric layout -->
+    <ellipse class="petal" cx="200" cy="110" rx="55" ry="95"
         onclick="reveal(1, this)"/>
 
-    <ellipse class="petal" id="p2" cx="290" cy="170" rx="50" ry="90"
+    <ellipse class="petal" cx="290" cy="170" rx="55" ry="95"
+        transform="rotate(72 200 200)"
         onclick="reveal(2, this)"/>
 
-    <ellipse class="petal" id="p3" cx="260" cy="290" rx="50" ry="90"
+    <ellipse class="petal" cx="260" cy="290" rx="55" ry="95"
+        transform="rotate(144 200 200)"
         onclick="reveal(3, this)"/>
 
-    <ellipse class="petal" id="p4" cx="140" cy="290" rx="50" ry="90"
+    <ellipse class="petal" cx="140" cy="290" rx="55" ry="95"
+        transform="rotate(216 200 200)"
         onclick="reveal(4, this)"/>
 
-    <ellipse class="petal" id="p5" cx="110" cy="170" rx="50" ry="90"
+    <ellipse class="petal" cx="110" cy="170" rx="55" ry="95"
+        transform="rotate(288 200 200)"
         onclick="reveal(5, this)"/>
 
-    <circle cx="200" cy="200" r="55" fill="#ffcc00"/>
+    <circle cx="200" cy="200" r="60" fill="#ffcc00"/>
 </svg>
 
 <div id="centerText"></div>
@@ -138,15 +140,15 @@ function reveal(num, petal) {
         ];
 
         document.getElementById("centerText").innerHTML = `
-            <h3 style="color:#c9a000;">${messages[num]}</h3>
+            <h3 style="color:#d63384;">${messages[num]}</h3>
             <img src="photo${num}.jpg">
         `;
 
         if (clicked === 5) {
             setTimeout(() => {
                 document.getElementById("centerText").innerHTML = `
-                    <h2 style="color:#c9a000; font-size:28px;">
-                        I love my bb 💛🌼
+                    <h2 style="color:#d63384; font-size:30px;">
+                        I love my bb 💕🌸
                     </h2>
                 `;
             }, 1000);
@@ -154,21 +156,21 @@ function reveal(num, petal) {
     }
 }
 
-/* Falling petals generator */
+/* Pink falling petals generator */
 function createPetal() {
     const petal = document.createElement("div");
     petal.classList.add("falling");
-    petal.innerHTML = "🌼";
+    petal.innerHTML = "🌸";
     petal.style.left = Math.random() * 100 + "vw";
-    petal.style.animationDuration = (3 + Math.random() * 5) + "s";
+    petal.style.animationDuration = (4 + Math.random() * 5) + "s";
     document.body.appendChild(petal);
 
     setTimeout(() => {
         petal.remove();
-    }, 8000);
+    }, 9000);
 }
 
-setInterval(createPetal, 500);
+setInterval(createPetal, 600);
 
 </script>
 
